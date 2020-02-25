@@ -17,6 +17,11 @@ let server = net.createServer(function(connection) {
   // This tells Node what to do whenever we receive data over this connection.
   // The clientData argument contains whatever data the client sent to us.
   connection.on('data', function(clientData) {
+    console.log('you successfully echoed data');
+    // this prints to the terminal you start the server from
+    connection.write(clientData);
+    // this copies back the writing from the client to send data
+
     // Use console.log to record when a client sends us data.
     // Use connection.write(...) to send data to the client
 
@@ -25,7 +30,7 @@ let server = net.createServer(function(connection) {
 
   // Print a log message when a client disconnects
   connection.on('end', function() {
-    serverLog('DISCONNET', `Client ${clientAddress} disconnected`);
+    serverLog('DISCONNECT', `Client ${clientAddress} disconnected`);
   });
 });
 
